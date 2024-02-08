@@ -19,15 +19,23 @@ func NewCasbinEnforcer() *casbin.Enforcer {
 	e.AddPermissionForUser("cam-creator(site1)", "site1", "/cloud-cameras/cameras", "POST")
 	e.AddPermissionForUser("cam-viewer(site1)", "site1", "/cloud-cameras/cameras/:imei", "GET")
 	e.AddPermissionForUser("cam-viewer(site1)", "site1", "/cloud-cameras/cameras/:imei/overview", "GET")
+	e.AddPermissionForUser("device-god(site2)", "site2", "/devices/*", "*")
 	// define roles that inherit from static roles
 	e.AddRoleForUserInDomain("customer(site1)", "cam-creator(site1)", "site1")
 	e.AddRoleForUserInDomain("customer(site1)", "cam-viewer(site1)", "site1")
 	e.AddRoleForUserInDomain("guard(site1)", "cam-viewer(site1)", "site1")
 	e.AddRoleForUserInDomain("god(site1)", "cam-god(site1)", "site1")
+	e.AddRoleForUserInDomain("god(site2)", "device-god(site2)", "site2")
 	// assign user to roles
 	e.AddRoleForUser("alice", "customer(site1)")
 	e.AddRoleForUser("bob", "guard(site1)")
 	e.AddRoleForUser("god", "god(site1)")
+	e.AddRoleForUser("god", "god(site2)")
+	// add business entity roles
+	e.AddRoleForUser("distributor", "god")
+	// add headquarter roles
+	e.AddRoleForUser("headquarter", "distributor")
+
 	if err := e.SavePolicy(); err != nil {
 		log.Fatal(err)
 	}
