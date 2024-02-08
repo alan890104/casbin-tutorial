@@ -24,12 +24,12 @@ func TestPolicy(t *testing.T) {
 		{"bob", "site1", "/cloud-cameras/cameras", "POST", false},
 		{"alice", "site2", "/cloud-cameras/cameras", "POST", false},
 		{"alice", "site2", "/cloud-cameras/cameras", "DELETE", false},
-		// test cam god
-		{"god", "site1", "/cloud-cameras/cameras", "POST", true},
-		{"god", "site1", "/cloud-cameras/cameras/:imei/overview", "GET", true},
-		{"god", "site1", "/cloud-cameras/cameras/:imei", "DELETE", true},
-		{"god", "site2", "/cloud-cameras/cameras", "POST", false},
-		{"god", "site1", "/cloud-cameras/cameras/:imei", "PUT", true},
+		// test cam admin
+		{"admin", "site1", "/cloud-cameras/cameras", "POST", true},
+		{"admin", "site1", "/cloud-cameras/cameras/:imei/overview", "GET", true},
+		{"admin", "site1", "/cloud-cameras/cameras/:imei", "DELETE", true},
+		{"admin", "site2", "/cloud-cameras/cameras", "POST", false},
+		{"admin", "site1", "/cloud-cameras/cameras/:imei", "PUT", true},
 		// test distributor
 		{"distributor", "site1", "/cloud-cameras/cameras", "POST", true},
 		{"distributor", "site1", "/cloud-cameras/cameras/:imei/overview", "GET", true},
