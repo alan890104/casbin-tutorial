@@ -19,7 +19,7 @@ func NewCasbinEnforcer() *casbin.Enforcer {
 	e.AddPermissionForUser("cam-creator(site1)", "site1", "/cloud-cameras/cameras", "POST")
 	e.AddPermissionForUser("cam-viewer(site1)", "site1", "/cloud-cameras/cameras/:imei", "GET")
 	e.AddPermissionForUser("cam-viewer(site1)", "site1", "/cloud-cameras/cameras/:imei/overview", "GET")
-	e.AddPermissionForUser("device-admin(site2)", "site2", "/devices/*", "*")
+	e.AddPermissionForUser("device-admin(site2)", "site2", "/devices*", "*")
 	// define roles that inherit from static roles
 	e.AddRoleForUserInDomain("customer(site1)", "cam-creator(site1)", "site1")
 	e.AddRoleForUserInDomain("customer(site1)", "cam-viewer(site1)", "site1")

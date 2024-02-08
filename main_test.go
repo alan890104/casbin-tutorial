@@ -36,6 +36,7 @@ func TestPolicy(t *testing.T) {
 		{"distributor", "site1", "/cloud-cameras/cameras/:imei", "DELETE", true},
 		{"distributor", "site2", "/cloud-cameras/cameras", "POST", false},
 		{"distributor", "site1", "/cloud-cameras/cameras/:imei", "PUT", true},
+		{"distributor", "site2", "/devices", "POST", true},
 	}
 
 	for _, tc := range testcases {
